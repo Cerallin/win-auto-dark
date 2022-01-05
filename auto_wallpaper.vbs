@@ -1,0 +1,1 @@
+CreateObject("WScript.Shell").Run "powershell.exe C:\Users\julia\Documents\auto_wallpaper.ps1", 0
