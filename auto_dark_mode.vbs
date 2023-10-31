@@ -1,4 +1,4 @@
-' Copyright (c) 2022 Cerallin <cerallin@cerallin.top>
+' Copyright (c) 2022-2023 Cerallin <cerallin@cerallin.top>
 '
 ' Permission is hereby granted, free of charge, to any person obtaining a copy
 ' of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,12 @@ Dim reg, target_theme
 light_off_time = 1260
 light_on_time = 360
 
+' IIf(expr, truepart, falsepart)
+Function IIf(expr, truepart, falsepart)
+   IIf = falsepart
+   If expr Then IIf = truepart
+End Function
+
 Class MyTime
     Private h
     Private m
@@ -42,7 +48,6 @@ Class MyTime
         Dim now_time
         now_time = Now
 
-        '
         h = Hour(now_time)
         m = Minute(now_time)
     End Sub
@@ -108,7 +113,7 @@ Function get_target_theme(cur_time)
     tval = cur_time.time
     ' Calculate if current time is in the day time
     ' and convert the result into integer
-    get_target_theme = CInt(tval < light_off_time AND tval > light_on_time)
+    get_target_theme = IIf((tval < light_off_time AND tval > light_on_time), 1, 0)
 End Function
 
 ' Start processing
